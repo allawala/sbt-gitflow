@@ -1,22 +1,21 @@
-
-// Release
-import ReleaseTransformations._
+import sbtrelease._
 import allawala.sbt.sbtrelease.gitflow.Steps._
+import sbtrelease.ReleaseStateTransformations._
 
-releaseProcess := Seq[ReleaseStep](
+releaseProcess := Seq(
+  releaseStepCommand(ExtraReleaseCommands.initialVcsChecksCommand),
   checkSnapshotDependencies,
-  checkGitFlowExists,                       //git-flow
+  checkGitFlowExists,
   inquireVersions,
   runClean,
   runTest,
-  gitFlowReleaseStart,                      //git-flow
+  gitFlowReleaseStart,
   setReleaseVersion,
   commitReleaseVersion,
-  releaseStepCommandAndRemaining("publish"),
-  gitFlowReleaseFinish,                     //git-flow
-  pushMaster,                               //git-flow
+  publishArtifacts,
+  gitFlowReleaseFinish,
+  pushMaster,
   setNextVersion,
   commitNextVersion,
   pushChanges
 )
-
