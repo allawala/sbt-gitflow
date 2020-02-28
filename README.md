@@ -1,0 +1,37 @@
+# git-flow
+
+git-flow for sbt-release
+
+## Usage
+
+This plugin requires sbt 1.0.0+ and sbt-release 1.0.6+
+
+```
+// build.sbt
+import ReleaseTransformations._
+import allawala.sbt.sbtrelease.gitflow.Steps._
+
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  checkGitFlowExists,                       //git-flow
+  inquireVersions,
+  runClean,
+  runTest,
+  gitFlowReleaseStart,                      //git-flow
+  setReleaseVersion,
+  commitReleaseVersion,
+  gitFlowReleaseFinish,                     //git-flow
+  pushMaster,                               //git-flow
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
+```
+
+Run `sbt "release with-defaults"`
+
+
+### Reference
+
+https://github.com/ServiceRocket/sbt-git-flow
+
