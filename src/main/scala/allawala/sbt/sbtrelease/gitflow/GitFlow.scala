@@ -42,6 +42,18 @@ class GitFlow(git: Git) {
   def pushMaster() = run(s"Failed to run 'git push origin master'") {
     git.cmd("push", "origin", "master")
   }
+
+  def checkoutBranch(branch: String) = run(s"Failed to run 'git checkout ${branch}'") {
+    git.cmd("checkout", branch)
+  }
+
+  def pull = run(s"Failed to run 'git pull '") {
+    git.cmd("pull")
+  }
+
+  def pushBranch(branch: String) = run(s"Failed to run 'git push origin ${branch}'") {
+    git.cmd("push", "origin", branch)
+  }
 }
 
 object GitFlow {

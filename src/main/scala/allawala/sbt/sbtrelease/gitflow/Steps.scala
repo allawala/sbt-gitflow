@@ -57,4 +57,16 @@ object Steps {
   val pushMaster: ReleaseStep = run { gitFlow =>
     gitFlow.pushMaster()
   }
+
+  def checkoutBranch(branch: String): ReleaseStep = run { gitFlow =>
+    gitFlow.checkoutBranch(branch)
+  }
+
+  val pull: ReleaseStep = run { gitFlow =>
+    gitFlow.pull
+  }
+
+  def pushBranch(branch: String): ReleaseStep = run { gitFlow =>
+    gitFlow.pushBranch(branch)
+  }
 }
